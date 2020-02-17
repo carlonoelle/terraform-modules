@@ -1,13 +1,12 @@
 data "google_folder" "folder" {
-  folder              = var.folder
-  lookup_organization = true
+  folder = var.folder
 }
 
 resource "google_project" "project" {
   name       = var.project_name
   project_id = var.project_id
   org_id     = var.org_id
-  folder_id  = google_folder.folder.name
+  folder_id  = data.google_folder.folder.id
 }
 
 resource "google_compute_subnetwork" "main_subnet" {
