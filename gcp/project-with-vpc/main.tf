@@ -15,9 +15,12 @@ resource "google_compute_subnetwork" "main_subnet" {
   network       = google_compute_network.main_network.self_link
 }
 
-resource "google_project_service" "project" {
+resource "google_project_service" "compute" {
   project = "your-project-id"
   service = "compute.googleapis.com"
+  batching = {
+    enable_batching = false
+  }
 
   disable_dependent_services = true
 }
