@@ -5,7 +5,6 @@ data "google_folder" "folder" {
 resource "google_project" "project" {
   name       = var.project_name
   project_id = var.project_id
-  org_id     = var.org_id
   folder_id  = data.google_folder.folder.id
 }
 
