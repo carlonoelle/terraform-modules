@@ -15,6 +15,13 @@ resource "google_compute_subnetwork" "main_subnet" {
   network       = google_compute_network.main_network.self_link
 }
 
+resource "google_project_service" "project" {
+  project = "your-project-id"
+  service = "compute.googleapis.com"
+
+  disable_dependent_services = true
+}
+
 resource "google_compute_network" "main_network" {
   name                    = "main"
   project                 = google_project.project.number
